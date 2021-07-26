@@ -36,3 +36,139 @@
     transform: rotate(360deg);
   }
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+* {
+  box-sizing: border-box;
+}
+
+div,
+nav {
+  position: relative;
+}
+
+html {
+  font-family: "Noto Sans", sans-serif;
+  color: #f2f2f2;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav {
+  z-index: 1;
+}
+
+.navbar {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 0 64px;
+  background: #023047;
+}
+@media (max-width: 640px) {
+  .navbar {
+    padding: 0 2rem;
+  }
+}
+.navbar .logo {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+}
+.navbar .burger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+@media (max-width: 640px) {
+  .navbar .burger {
+    display: flex;
+  }
+}
+.navbar .icon {
+  font-size: 2rem;
+  user-select: none;
+  cursor: pointer;
+  transition: color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.navbar .icon:hover {
+  color: #fb8500;
+}
+.navbar .icon:active {
+  color: #ffb703;
+}
+.navbar ul {
+  display: flex;
+}
+@media (max-width: 640px) {
+  .navbar ul {
+    display: none;
+  }
+}
+.navbar ul a {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 2rem;
+}
+.navbar ul a:hover {
+  background: #219ebc;
+}
+.navbar ul a:active {
+  background: #8ecae6;
+}
+
+.dropdown {
+  position: absolute;
+  width: 100%;
+  background: #023047;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.dropdown ul {
+  display: flex;
+  flex-direction: column;
+}
+.dropdown a {
+  display: block;
+  padding: 1rem 2rem;
+}
+.dropdown a:hover {
+  background: #219ebc;
+}
+.dropdown a:active {
+  background: #8ecae6;
+}
+
+main {
+  color: black;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  z-index: 0;
+}
+
+.container {
+  max-width: 960px;
+}
