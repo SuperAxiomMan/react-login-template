@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Formateur = () => {
+const Formateur = ({userID, userName, userRole}) => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const getData = async () => {
@@ -24,6 +24,8 @@ const Formateur = () => {
   return (
     <div>
       <h1>Je S'appelle Formateur</h1>
+      <h6>Logged as {userName} ({userRole}) id : {userID}</h6>
+      <p>Formateurs List</p>
       <ul>
         {users.map((u) =>
           u.role === "formateur" ? (

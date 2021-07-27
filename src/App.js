@@ -6,8 +6,14 @@ import Admin from "./components/Admin";
 
 import Nav from "./components/Nav";
 
+import {userContext} from './userContext';
+
+
 const App = () => {
   const [userRole, setUserRole] = useState("");
+  const [userName, setUserName] = useState("");
+  const [userID, setUserID] = useState("");
+  const [userLog, setUserLog] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,6 +36,9 @@ const App = () => {
       );
       const res = await fetchUser.json();
       setUserRole(res.role);
+      setUserID(res.id);
+      setUserName(res.lastName);
+      setUserLog(true)
     } catch (error) {
       console.log(error);
     }
@@ -38,13 +47,14 @@ const App = () => {
   return (
     <div>
       <Nav />
+      <userContext.Provider value={userLog}>
       <main>
         {userRole === "gestionnaire" ? (
-          <Admin />
+          <Admin userID={userID} userName={userName} userRole={userRole} />
         ) : userRole === "formateur" ? (
-          <Formateur />
+          <Formateur userID={userID} userName={userName} userRole={userRole} />
         ) : userRole === "stagiaire" ? (
-          <Student />
+          <Student userID={userID} userName={userName} userRole={userRole} />
         ) : (
           <div>
             <form onSubmit={handleSubmit}>
@@ -57,6 +67,7 @@ const App = () => {
           </div>
         )}
       </main>
+      </userContext.Provider>
     </div>
   );
 };
