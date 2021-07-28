@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Student = ({userID, userName, userRole}) => {
+const Student = ({ userID, userName, userRole }) => {
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const getData = async () => {
@@ -22,20 +22,28 @@ const Student = ({userID, userName, userRole}) => {
   }, []);
 
   return (
-    <div>
-      <h1>Je S'appelle Student</h1>
-      <h6>Logged as {userName} ({userRole}) id : {userID}</h6>
-      <p>Students list</p>
-      <ul>
-        {users.map((u) =>
-          u.role === "stagiaire" ? (
-            <li key={u.id}>{u.firstName} {u.lastName}</li>
-          ) : (
-            ""
-          )
-        )}
-      </ul>
-    </div>
+    <>
+      {userRole === "stagiaire" && (
+        <div>
+          <h1>Je S'appelle Student</h1>
+          <h6>
+            Logged as {userName} ({userRole}) id : {userID}
+          </h6>
+          <p>Students list</p>
+          <ul>
+            {users.map((u) =>
+              u.role === "stagiaire" ? (
+                <li key={u.id}>
+                  {u.firstName} {u.lastName}
+                </li>
+              ) : (
+                ""
+              )
+            )}
+          </ul>
+        </div>
+      )}
+    </>
   );
 };
 

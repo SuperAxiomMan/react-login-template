@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
-import { userContext } from "./../userContext";
+
 
 const Admin = ({ userID, userName, userRole }) => {
-  const isLogged = useContext(userContext)
-  console.log(isLogged)
+
+
   const [users, setUsers] = useState([]);
   useEffect(() => {
     const getData = async () => {
@@ -28,28 +28,28 @@ const Admin = ({ userID, userName, userRole }) => {
   }, []);
 
   return (
-    
-        
-       
-      <div>
-        <h1>Je S'appelle Gestionnaire</h1>
-        <h6>
-          Logged as {userName} ({userRole}) id : {userID}
-        </h6>
-        <p>Admin List</p>
-        <ul>
-          {users.map((u) =>
-            u.role === "gestionnaire" ? (
-              <li key={u.id}>
-                {u.firstName} {u.lastName}
-              </li>
-            ) : (
-              ""
-            )
-          )}
-        </ul>
-      </div>
-  
+    <>
+      {userRole === "gestionnaire" && (
+        <div>
+          <h1>Je S'appelle Gestionnaire</h1>
+          <h6>
+            Logged as {userName} ({userRole}) id : {userID}
+          </h6>
+          <p>Admin List</p>
+          <ul>
+            {users.map((u) =>
+              u.role === "gestionnaire" ? (
+                <li key={u.id}>
+                  {u.firstName} {u.lastName}
+                </li>
+              ) : (
+                ""
+              )
+            )}
+          </ul>
+        </div>
+      )}
+    </>
   );
 };
 
