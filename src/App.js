@@ -57,10 +57,9 @@ const App = () => {
 
   const logoutHandler = () => {
     setUserLog(false);
-    setUserRole("res.role");
-    setUserName("res.lastName");
+    setUserRole("");
+    setUserName("");
     SetUserID(0);
-    localStorage.removeItem("userIsLog");
     localStorage.clear();
   };
 
