@@ -7,10 +7,18 @@ import Admin from "./components/Admin";
 import Nav from "./components/Nav";
 
 const App = () => {
-  const [userRole, setUserRole] = useState("");
-  const [userName, setUserName] = useState("");
-  const [userID, SetUserID] = useState();
-  const [userLog, setUserLog] = useState(false);
+  const [userRole, setUserRole] = useState(
+    String(localStorage.getItem("userRole") || "")
+  );
+  const [userName, setUserName] = useState(
+    String(localStorage.getItem("userName") || "")
+  );
+  const [userID, SetUserID] = useState(
+    Number(localStorage.getItem("userID") || 0)
+  );
+  const [userLog, setUserLog] = useState(
+    Boolean(localStorage.getItem("userIsLog") || false)
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,11 +40,16 @@ const App = () => {
         }
       );
       const res = await fetchUser.json();
+
       setUserRole(res.role);
       setUserName(res.lastName);
       SetUserID(res.id);
-
       setUserLog(true);
+
+      localStorage.setItem("userIsLog", true);
+      localStorage.setItem("userRole", res.role);
+      localStorage.setItem("userName", res.lastName);
+      localStorage.setItem("userID", res.id);
     } catch (error) {
       console.log(error);
     }
@@ -47,6 +60,8 @@ const App = () => {
     setUserRole("res.role");
     setUserName("res.lastName");
     SetUserID(0);
+    localStorage.removeItem("userIsLog");
+    localStorage.clear();
   };
 
   return (
@@ -73,11 +88,17 @@ const App = () => {
           )}
         </div>
 
-        <Admin userID={userID} userName={userName} userRole={userRole} />
-
-        <Formateur userID={userID} userName={userName} userRole={userRole} />
-
-        <Student userID={userID} userName={userName} userRole={userRole} />
+        {userLog && (
+          <>
+            <Admin userID={userID} userName={userName} userRole={userRole} />
+            <Formateur
+              userID={userID}
+              userName={userName}
+              userRole={userRole}
+            />
+            <Student userID={userID} userName={userName} userRole={userRole} />
+          </>
+        )}
       </main>
     </div>
   );
