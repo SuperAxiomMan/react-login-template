@@ -41,15 +41,17 @@ const App = () => {
       );
       const res = await fetchUser.json();
 
-      setUserRole(res.role);
-      setUserName(res.lastName);
-      SetUserID(res.id);
+      setUserRole(res.data.role);
+      setUserName(res.data.lastName);
+      SetUserID(res.data.id);
       setUserLog(true);
 
+      console.log(res);
+
       localStorage.setItem("userIsLog", true);
-      localStorage.setItem("userRole", res.role);
-      localStorage.setItem("userName", res.lastName);
-      localStorage.setItem("userID", res.id);
+      localStorage.setItem("userRole", res.data.role);
+      localStorage.setItem("userName", res.data.lastName);
+      localStorage.setItem("userID", res.data.id);
     } catch (error) {
       console.log(error);
     }
