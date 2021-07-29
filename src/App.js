@@ -52,6 +52,7 @@ const App = () => {
       localStorage.setItem("userRole", res.data.role);
       localStorage.setItem("userName", res.data.lastName);
       localStorage.setItem("userID", res.data.id);
+      window.location.reload();
     } catch (error) {
       console.log(error);
     }
